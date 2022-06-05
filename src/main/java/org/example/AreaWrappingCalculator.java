@@ -6,8 +6,8 @@ import java.util.function.Function;
 import java.util.function.ToIntFunction;
 
 public class AreaWrappingCalculator {
-    public static final Function<String, String[]> LINE_TO_DIMENSIONS = x -> x.split("x");
-    public static final ToIntFunction<String[]> CALCULATE_TOTAL_AREA = x -> {
+    private static final Function<String, String[]> LINE_TO_DIMENSIONS = x -> x.split("x");
+    private static final ToIntFunction<String[]> CALCULATE_TOTAL_AREA = x -> {
         var l = Integer.valueOf(x[0]);
         var w = Integer.valueOf(x[1]);
         var h = Integer.valueOf(x[2]);
@@ -18,7 +18,7 @@ public class AreaWrappingCalculator {
         return 2 * area_1 + 2 * area_2 + 2 * area_3 + min_area;
     };
 
-    public static final ToIntFunction<String[]> CALCULATE_TOTAL_RIBBON = x -> {
+    private static final ToIntFunction<String[]> CALCULATE_TOTAL_RIBBON = x -> {
         var l = Integer.valueOf(x[0]);
         var w = Integer.valueOf(x[1]);
         var h = Integer.valueOf(x[2]);
