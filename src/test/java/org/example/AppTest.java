@@ -27,7 +27,7 @@ public class AppTest {
 
     @Test
     void day_1() {
-        assertEquals(74, ParenthesisElevator.resolveFloor(dayOneInput));
+        assertEquals(ParenthesisElevator.resolveFloor(dayOneInput), 74);
     }
 
     @Test
