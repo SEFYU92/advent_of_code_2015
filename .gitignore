@@ -1,2 +1,10 @@
 # Project exclude paths
 /target/
+/advent_of_code_2015.iml
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/.idea/.gitignore

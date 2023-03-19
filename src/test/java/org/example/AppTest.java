@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.day3.SantaNavigationSystem;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -18,11 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AppTest {
     private String dayOneInput;
     private List<String> dayTwoInput;
+    private String dayThreeInput;
 
     @BeforeAll
     void init() throws IOException {
         dayOneInput = Files.readString(Paths.get("./src/test/resources/day1_input"));
         dayTwoInput = Files.readAllLines(Paths.get("./src/test/resources/day2_input"));
+        dayThreeInput = Files.readString(Paths.get("./src/test/resources/day3_input"));
     }
 
     @Test
@@ -45,4 +48,10 @@ public class AppTest {
         assertEquals(3842356, AreaWrappingCalculator.computeTotalRibbon(dayTwoInput));
     }
 
+    @Test
+    void day_3_should_record_movement() {
+        var sut = new SantaNavigationSystem();
+        sut.visitAllHouses("<>v^");
+        assertEquals(5, sut.getPositionsHistory().size());
+    }
 }
