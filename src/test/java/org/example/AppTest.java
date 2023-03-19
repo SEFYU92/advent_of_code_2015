@@ -49,9 +49,8 @@ public class AppTest {
     }
 
     @Test
-    void day_3_should_record_movement() {
-        var sut = new SantaNavigationSystem();
-        sut.visitAllHouses("<>v^");
-        assertEquals(5, sut.getPositionsHistory().size());
+    void day_3() {
+        var santaNavigationSystem = new SantaNavigationSystem();
+        assertEquals(2565, santaNavigationSystem.visitAllHouses(dayThreeInput));
     }
 }

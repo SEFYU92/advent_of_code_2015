@@ -3,6 +3,7 @@ package org.example.day3;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 final class Position {
     private final int x;
@@ -30,12 +31,11 @@ final class Position {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Position) obj;
-        return this.x == that.x &&
-                this.y == that.y;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Position position = (Position) o;
+        return x == position.x && y == position.y;
     }
 
     @Override
@@ -47,13 +47,10 @@ final class Position {
 public class SantaNavigationSystem {
     private Position currentPosition;
 
-    private final List<Position> positionsHistory = new ArrayList<>();
+    private List<Position> positionsHistory;
 
-    private char castToChar(int x) {
-        return (char) x;
-    }
-
-    public void visitAllHouses(String input) {
+    public int visitAllHouses(String input) {
+        positionsHistory = new ArrayList<>();
         currentPosition = new Position(0, 0);
         positionsHistory.add(currentPosition);
         input.chars().map(this::castToChar).forEach(x -> {
@@ -66,9 +63,14 @@ public class SantaNavigationSystem {
                     }
                 }
         );
+        return countMultipleVisits();
     }
 
-    public List<Position> getPositionsHistory() {
-        return positionsHistory;
+    private char castToChar(int x) {
+        return (char) x;
+    }
+
+    private int countMultipleVisits() {
+        return Set.copyOf(positionsHistory).size();
     }
 }
