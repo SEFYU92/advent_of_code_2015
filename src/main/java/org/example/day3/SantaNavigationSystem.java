@@ -1,9 +1,6 @@
 package org.example.day3;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 final class Position {
     private final int x;
@@ -49,7 +46,7 @@ public class SantaNavigationSystem {
 
     private List<Position> positionsHistory;
 
-    public int visitAllHouses(String input) {
+    public void visitAllHouses(String input) {
         positionsHistory = new ArrayList<>();
         currentPosition = new Position(0, 0);
         positionsHistory.add(currentPosition);
@@ -63,7 +60,6 @@ public class SantaNavigationSystem {
                     }
                 }
         );
-        return countMultipleVisits();
     }
 
     public List<String> splitInput(String input) {
@@ -83,7 +79,11 @@ public class SantaNavigationSystem {
         return (char) x;
     }
 
-    private int countMultipleVisits() {
+    public int countMultipleVisits() {
         return Set.copyOf(positionsHistory).size();
+    }
+
+    public Set<Position> getVisitedHouses() {
+        return new HashSet<>(positionsHistory);
     }
 }

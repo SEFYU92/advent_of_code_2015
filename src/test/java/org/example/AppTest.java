@@ -51,22 +51,35 @@ public class AppTest {
     @Test
     void day_3() {
         var santaNavigationSystem = new SantaNavigationSystem();
-        assertEquals(2565, santaNavigationSystem.visitAllHouses(dayThreeInput));
+        santaNavigationSystem.visitAllHouses(dayThreeInput);
+        assertEquals(2565, santaNavigationSystem.countMultipleVisits());
     }
 
     @Test
     void test_split_input_even_size() {
         var santaNavigationSystem = new SantaNavigationSystem();
         var result = santaNavigationSystem.splitInput("azerty");
-        assertEquals("aet",result.get(0));
-        assertEquals("zry",result.get(1));
+        assertEquals("aet", result.get(0));
+        assertEquals("zry", result.get(1));
     }
 
     @Test
     void test_split_input_odd_size() {
         var santaNavigationSystem = new SantaNavigationSystem();
         var result = santaNavigationSystem.splitInput("12345");
-        assertEquals("135",result.get(0));
-        assertEquals("24",result.get(1));
+        assertEquals("135", result.get(0));
+        assertEquals("24", result.get(1));
+    }
+
+    @Test
+    void day_3_part_2() {
+        var santaNavigationSystem = new SantaNavigationSystem();
+        var robotSantaNavigationSystem = new SantaNavigationSystem();
+        var santaAndRobotSantaRoadMap = santaNavigationSystem.splitInput(dayThreeInput);
+        santaNavigationSystem.visitAllHouses(santaAndRobotSantaRoadMap.get(0));
+        robotSantaNavigationSystem.visitAllHouses(santaAndRobotSantaRoadMap.get(1));
+        var santaVisitedHouses = santaNavigationSystem.getVisitedHouses();
+        santaVisitedHouses.addAll(robotSantaNavigationSystem.getVisitedHouses());
+        System.out.println(santaVisitedHouses.size());
     }
 }
