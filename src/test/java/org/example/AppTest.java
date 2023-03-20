@@ -53,4 +53,20 @@ public class AppTest {
         var santaNavigationSystem = new SantaNavigationSystem();
         assertEquals(2565, santaNavigationSystem.visitAllHouses(dayThreeInput));
     }
+
+    @Test
+    void test_split_input_even_size() {
+        var santaNavigationSystem = new SantaNavigationSystem();
+        var result = santaNavigationSystem.splitInput("azerty");
+        assertEquals("aet",result.get(0));
+        assertEquals("zry",result.get(1));
+    }
+
+    @Test
+    void test_split_input_odd_size() {
+        var santaNavigationSystem = new SantaNavigationSystem();
+        var result = santaNavigationSystem.splitInput("12345");
+        assertEquals("135",result.get(0));
+        assertEquals("24",result.get(1));
+    }
 }

@@ -66,6 +66,19 @@ public class SantaNavigationSystem {
         return countMultipleVisits();
     }
 
+    public List<String> splitInput(String input) {
+        var input1 = new ArrayList<String>();
+        var input2 = new ArrayList<String>();
+        input.chars().forEach(x -> {
+            if (input1.size() == input2.size()) {
+                input1.add(String.valueOf((char) x));
+            } else {
+                input2.add(String.valueOf((char) x));
+            }
+        });
+        return List.of(String.join("", input1), String.join("", input2));
+    }
+
     private char castToChar(int x) {
         return (char) x;
     }
