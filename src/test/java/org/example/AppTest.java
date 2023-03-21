@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.day3.SantaNavigationSystem;
+import org.example.day4.HashProducer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -11,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Unit test for simple App.
@@ -81,5 +83,11 @@ public class AppTest {
         var allVisitedHouses = santaNavigationSystem.getVisitedHouses();
         allVisitedHouses.addAll(robotSantaNavigationSystem.getVisitedHouses());
         assertEquals(2639, allVisitedHouses.size());
+    }
+
+    @Test
+    void day4() {
+        assertFalse(HashProducer.isNotCompliant("000001dbbfa3a5c83a2d506429c7b00e"));
+        assertEquals("254575",HashProducer.produceHash("bgvyzdsv"));
     }
 }
