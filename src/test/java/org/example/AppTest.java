@@ -12,7 +12,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Unit test for simple App.
@@ -86,8 +85,16 @@ public class AppTest {
     }
 
     @Test
-    void day4() {
-        assertFalse(HashProducer.isNotCompliant("000001dbbfa3a5c83a2d506429c7b00e"));
-        assertEquals("254575",HashProducer.produceHash("bgvyzdsv"));
+    void day4_part_1() {
+        var hashProducer = new HashProducer("00000");
+        assertEquals("609043", hashProducer.produceHash("abcdef"));
+        assertEquals("1048970", hashProducer.produceHash("pqrstuv"));
+        assertEquals("254575", hashProducer.produceHash("bgvyzdsv"));
+    }
+
+    @Test
+    void day4_part_2() {
+        var hashProducer = new HashProducer("000000");
+        assertEquals("1038736", hashProducer.produceHash("bgvyzdsv"));
     }
 }

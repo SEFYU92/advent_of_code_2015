@@ -3,7 +3,13 @@ package org.example.day4;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class HashProducer {
-    public static String produceHash(String input) {
+    private final String headingZeros;
+
+    public HashProducer(String headingZeros) {
+        this.headingZeros = headingZeros;
+    }
+
+    public String produceHash(String input) {
         var tail = 0;
         var solution = "";
         while (isNotCompliant(solution)) {
@@ -13,7 +19,7 @@ public class HashProducer {
         return String.valueOf(tail);
     }
 
-    public static boolean isNotCompliant(String solution) {
-        return !(solution.startsWith("00000") && Character.isDigit(solution.charAt(5)));
+    private boolean isNotCompliant(String solution) {
+        return !solution.startsWith(headingZeros);
     }
 }
