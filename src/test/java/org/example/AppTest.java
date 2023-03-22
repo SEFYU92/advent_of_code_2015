@@ -103,13 +103,32 @@ public class AppTest {
 
     @Test
     void day5() {
-        assertAll(
-                () -> assertTrue(StringVerifier.isNice("ugknbfddgicrmopn")),
-                () -> assertFalse(StringVerifier.isNice("jchzalrnumimnmhp")),
-                () -> assertFalse(StringVerifier.isNice("haegwjzuvuyypxyu")),
-                () -> assertFalse(StringVerifier.isNice("dvszwmarrgswjxmb")),
+        assertEquals(238, StringVerifier.numberOfNiceStrings(dayFiveInput,
+                StringVerifier.CONTAINS3VOWELS,
+                StringVerifier.CONTAINS_DOUBLE,
+                StringVerifier.DOES_NOT_CONTAIN_FORBIDDEN));
+    }
 
-                () -> assertEquals(238, StringVerifier.countNiceStrings(dayFiveInput))
+    @Test
+    void day5part2() {
+        assertAll(
+                () -> assertTrue(StringVerifier.containsPairOfTwo("xyxy")),
+                () -> assertTrue(StringVerifier.containsPairOfTwo("aabcdefgaa")),
+                () -> assertFalse(StringVerifier.containsPairOfTwo("aaa"))
+        );
+
+        assertAll(
+                () -> assertTrue(StringVerifier.containsRepeated("xyx")),
+                () -> assertTrue(StringVerifier.containsRepeated("abcdefeghi")),
+                () -> assertTrue(StringVerifier.containsRepeated("aaa"))
+        );
+
+        assertAll(
+                () -> assertTrue(StringVerifier.satisfiesAllPredicates("qjhvhtzxzqqjkmpb", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
+                () -> assertTrue(StringVerifier.satisfiesAllPredicates("xxyxx", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
+                () -> assertFalse(StringVerifier.satisfiesAllPredicates("uurcxstgmygtbstg", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
+                () -> assertFalse(StringVerifier.satisfiesAllPredicates("ieodomkazucvgmuy", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
+                () -> assertEquals(66, StringVerifier.numberOfNiceStrings(dayFiveInput, StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED))
         );
     }
 }
