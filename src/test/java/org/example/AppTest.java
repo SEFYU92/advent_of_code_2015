@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static org.example.day5.StringVerifier.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -103,32 +104,18 @@ public class AppTest {
 
     @Test
     void day5() {
-        assertEquals(238, StringVerifier.numberOfNiceStrings(dayFiveInput,
-                StringVerifier.CONTAINS3VOWELS,
-                StringVerifier.CONTAINS_DOUBLE,
-                StringVerifier.DOES_NOT_CONTAIN_FORBIDDEN));
+        var stringVerifier = new StringVerifier(List.of(CONTAINS_3_VOWELS, CONTAINS_SUCCESSIVE_DOUBLE, DOES_NOT_CONTAIN_FORBIDDEN));
+        assertEquals(238, stringVerifier.numberOfNiceStrings(dayFiveInput));
     }
 
     @Test
     void day5part2() {
+        var stringVerifier = new StringVerifier(List.of(CONTAINS_PAIR_OF_2, CONTAINS_SPACED_DOUBLE));
         assertAll(
-                () -> assertTrue(StringVerifier.containsPairOfTwo("xyxy")),
-                () -> assertTrue(StringVerifier.containsPairOfTwo("aabcdefgaa")),
-                () -> assertFalse(StringVerifier.containsPairOfTwo("aaa"))
-        );
-
-        assertAll(
-                () -> assertTrue(StringVerifier.containsRepeated("xyx")),
-                () -> assertTrue(StringVerifier.containsRepeated("abcdefeghi")),
-                () -> assertTrue(StringVerifier.containsRepeated("aaa"))
-        );
-
-        assertAll(
-                () -> assertTrue(StringVerifier.satisfiesAllPredicates("qjhvhtzxzqqjkmpb", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
-                () -> assertTrue(StringVerifier.satisfiesAllPredicates("xxyxx", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
-                () -> assertFalse(StringVerifier.satisfiesAllPredicates("uurcxstgmygtbstg", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
-                () -> assertFalse(StringVerifier.satisfiesAllPredicates("ieodomkazucvgmuy", StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED)),
-                () -> assertEquals(66, StringVerifier.numberOfNiceStrings(dayFiveInput, StringVerifier.CONTAINS_PAIR_OF_2, StringVerifier.CONTAINS_REPEATED))
+                () -> assertEquals(1, stringVerifier.numberOfNiceStrings(List.of("qjhvhtzxzqqjkmpb"))),
+                () -> assertEquals(1, stringVerifier.numberOfNiceStrings(List.of("xxyxx"))),
+                () -> assertEquals(0, stringVerifier.numberOfNiceStrings(List.of("uurcxstgmygtbstg"))),
+                () -> assertEquals(0, stringVerifier.numberOfNiceStrings(List.of("ieodomkazucvgmuy")))
         );
     }
 }
