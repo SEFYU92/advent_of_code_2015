@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
+import org.example.day5.StringVerifier;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -11,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Unit test for simple App.
@@ -21,12 +22,14 @@ public class AppTest {
     private String dayOneInput;
     private List<String> dayTwoInput;
     private String dayThreeInput;
+    private List<String> dayFiveInput;
 
     @BeforeAll
     void init() throws IOException {
         dayOneInput = Files.readString(Paths.get("./src/test/resources/day1_input"));
         dayTwoInput = Files.readAllLines(Paths.get("./src/test/resources/day2_input"));
         dayThreeInput = Files.readString(Paths.get("./src/test/resources/day3_input"));
+        dayFiveInput = Files.readAllLines(Paths.get("./src/test/resources/day5_input"));
     }
 
     @Test
@@ -96,5 +99,17 @@ public class AppTest {
     void day4_part_2() {
         var hashProducer = new HashProducer("000000");
         assertEquals("1038736", hashProducer.produceHash("bgvyzdsv"));
+    }
+
+    @Test
+    void day5() {
+        assertAll(
+                () -> assertTrue(StringVerifier.isNice("ugknbfddgicrmopn")),
+                () -> assertFalse(StringVerifier.isNice("jchzalrnumimnmhp")),
+                () -> assertFalse(StringVerifier.isNice("haegwjzuvuyypxyu")),
+                () -> assertFalse(StringVerifier.isNice("dvszwmarrgswjxmb")),
+
+                () -> assertEquals(238, StringVerifier.countNiceStrings(dayFiveInput))
+        );
     }
 }
