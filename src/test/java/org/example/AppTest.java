@@ -5,8 +5,6 @@ import org.example.day2.AreaWrappingCalculator;
 import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
-import org.example.day6.Instruction;
-import org.example.day6.LightInstructionParser;
 import org.example.day6.LightManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,6 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.example.day5.StringVerifier.*;
-import static org.example.day6.InstructionType.ON;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,6 +28,7 @@ public class AppTest {
     private List<String> dayTwoInput;
     private String dayThreeInput;
     private List<String> dayFiveInput;
+    private List<String> daySixInput;
 
     @BeforeAll
     void init() throws IOException {
@@ -38,6 +36,7 @@ public class AppTest {
         dayTwoInput = Files.readAllLines(Paths.get("./src/test/resources/day2_input"));
         dayThreeInput = Files.readString(Paths.get("./src/test/resources/day3_input"));
         dayFiveInput = Files.readAllLines(Paths.get("./src/test/resources/day5_input"));
+        daySixInput = Files.readAllLines(Paths.get("./src/test/resources/day6_input"));
     }
 
     @Test
@@ -131,8 +130,10 @@ public class AppTest {
 
     @Test
     void day6() {
-        assertEquals(new Instruction(489, 959, 759, 964, ON), LightInstructionParser.parseLine("turn on 489,959 through 759,964"));
-        LightManager.executeInstruction(new Instruction(0,0,2,2, ON));
-        assertEquals(9,LightManager.lightGrid.size());
+        var lightManager = new LightManager();
+        assertEquals(9, lightManager.resolveLightProgram(List.of("turn on 0,0 through 2,2")));
+        assertEquals(1000, lightManager.resolveLightProgram(List.of("toggle 0,0 through 999,0")));
+        assertEquals(4, lightManager.resolveLightProgram(List.of("toggle 499,499 through 500,500")));
+        assertEquals(569999, lightManager.resolveLightProgram(daySixInput));
     }
 }
