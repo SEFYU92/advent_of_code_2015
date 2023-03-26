@@ -131,9 +131,13 @@ public class AppTest {
     @Test
     void day6() {
         var lightManager = new LightManager();
-        assertEquals(9, lightManager.resolveLightProgram(List.of("turn on 0,0 through 2,2")));
-        assertEquals(1000, lightManager.resolveLightProgram(List.of("toggle 0,0 through 999,0")));
-        assertEquals(4, lightManager.resolveLightProgram(List.of("toggle 499,499 through 500,500")));
-        assertEquals(569999, lightManager.resolveLightProgram(daySixInput));
+        assertAll(
+                () -> assertEquals(9, lightManager.resolveLightProgram(List.of("turn on 0,0 through 2,2"))),
+                () -> assertEquals(1000, lightManager.resolveLightProgram(List.of("toggle 0,0 through 999,0"))),
+                () -> assertEquals(4, lightManager.resolveLightProgram(List.of("toggle 499,499 through 500,500"))),
+                () -> assertEquals(569999, lightManager.resolveLightProgram(daySixInput)),
+                () -> assertEquals(9, lightManager.resolveBrightnessProgram(List.of("turn on 0,0 through 2,2"))),
+                () -> assertEquals(18, lightManager.resolveBrightnessProgram(List.of("toggle 0,0 through 2,2")))
+        );
     }
 }
