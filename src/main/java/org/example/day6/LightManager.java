@@ -12,10 +12,11 @@ public class LightManager {
         return lightGrid.values().stream().filter(Boolean::booleanValue).count();
     }
 
-//    public long resolveBrightnessProgram(List<String> input) {
-//        Map<List<Integer>, Integer> lightGrid = new HashMap<>();
-//        input.stream().map(LightInstructionParser::parseLine)
-//                .forEach(instruction -> InstructionExecuter.executeInstruction(instruction,lightGrid));
-//        return lightGrid.values().stream().filter(Boolean::booleanValue).count();
-//    }
+    @SuppressWarnings(value = "unused")
+    public long resolveBrightnessProgram(List<String> input) {
+        Map<List<Integer>, Integer> lightGrid = new HashMap<>();
+        input.stream().map(LightInstructionParser::parseLine)
+                .forEach(instruction -> InstructionExecuter.executeBrightnessInstruction(instruction,lightGrid));
+        return lightGrid.values().stream().mapToInt(Integer::intValue).sum();
+    }
 }
