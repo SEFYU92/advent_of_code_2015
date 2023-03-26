@@ -114,8 +114,13 @@ public class AppTest {
         assertAll(
                 () -> assertEquals(1, stringVerifier.numberOfNiceStrings(List.of("qjhvhtzxzqqjkmpb"))),
                 () -> assertEquals(1, stringVerifier.numberOfNiceStrings(List.of("xxyxx"))),
+                () -> assertEquals(1, stringVerifier.numberOfNiceStrings(List.of("aaaaxyx"))),
+                () -> assertEquals(69, stringVerifier.numberOfNiceStrings(dayFiveInput)),
+                () -> assertEquals(0, stringVerifier.numberOfNiceStrings(List.of("uurcxstgmygtbstg"))),
                 () -> assertEquals(0, stringVerifier.numberOfNiceStrings(List.of("uurcxstgmygtbstg"))),
                 () -> assertEquals(0, stringVerifier.numberOfNiceStrings(List.of("ieodomkazucvgmuy")))
         );
     }
+
+
 }
