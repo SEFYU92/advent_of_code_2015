@@ -5,7 +5,8 @@ import org.example.day2.AreaWrappingCalculator;
 import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
-import org.example.day6.InstructionType;
+import org.example.day6.Instruction;
+import org.example.day6.LightInstructionParser;
 import org.example.day6.LightManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,9 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static org.example.day5.StringVerifier.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.example.day6.InstructionType.ON;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Unit test for simple App.
@@ -128,8 +131,8 @@ public class AppTest {
 
     @Test
     void day6() {
-        assertEquals(
-                new LightManager.Instruction(489, 959, 759, 964, InstructionType.ON),
-                LightManager.parseLine("turn on 489,959 through 759,964"));
+        assertEquals(new Instruction(489, 959, 759, 964, ON), LightInstructionParser.parseLine("turn on 489,959 through 759,964"));
+        LightManager.executeInstruction(new Instruction(0,0,2,2, ON));
+        assertEquals(9,LightManager.lightGrid.size());
     }
 }
