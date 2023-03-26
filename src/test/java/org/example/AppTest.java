@@ -15,7 +15,11 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static org.example.day5.StringVerifier.*;
+import static org.example.day5.StringVerifier.CONTAINS_3_VOWELS;
+import static org.example.day5.StringVerifier.CONTAINS_PAIR_OF_2;
+import static org.example.day5.StringVerifier.CONTAINS_SPACED_DOUBLE;
+import static org.example.day5.StringVerifier.CONTAINS_SUCCESSIVE_DOUBLE;
+import static org.example.day5.StringVerifier.DOES_NOT_CONTAIN_FORBIDDEN;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -139,5 +143,11 @@ public class AppTest {
                 () -> assertEquals(9, lightManager.resolveBrightnessProgram(List.of("turn on 0,0 through 2,2"))),
                 () -> assertEquals(18, lightManager.resolveBrightnessProgram(List.of("toggle 0,0 through 2,2")))
         );
+    }
+
+    @Test
+    void day6_part2() {
+        var lightManager = new LightManager();
+        assertEquals(17836115, lightManager.resolveBrightnessProgram(daySixInput));
     }
 }
