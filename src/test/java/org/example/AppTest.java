@@ -1,8 +1,12 @@
 package org.example;
 
+import org.example.day1.ParenthesisElevator;
+import org.example.day2.AreaWrappingCalculator;
 import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
+import org.example.day6.InstructionType;
+import org.example.day6.LightManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -122,5 +126,10 @@ public class AppTest {
         );
     }
 
-
+    @Test
+    void day6() {
+        assertEquals(
+                new LightManager.Instruction(489, 959, 759, 964, InstructionType.ON),
+                LightManager.parseLine("turn on 489,959 through 759,964"));
+    }
 }

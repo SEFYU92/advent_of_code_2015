@@ -1,9 +1,10 @@
-package org.example;
+package org.example.day2;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.ToIntFunction;
+import java.util.stream.Stream;
 
 public class AreaWrappingCalculator {
     private static final Function<String, String[]> LINE_TO_DIMENSIONS = x -> x.split("x");
@@ -14,7 +15,7 @@ public class AreaWrappingCalculator {
         var area_1 = l * w;
         var area_2 = h * w;
         var area_3 = h * l;
-        var min_area = List.of(area_1, area_2, area_3).stream().min(Comparator.naturalOrder()).get();
+        var min_area = Stream.of(area_1, area_2, area_3).min(Comparator.naturalOrder()).get();
         return 2 * area_1 + 2 * area_2 + 2 * area_3 + min_area;
     };
 
@@ -25,8 +26,7 @@ public class AreaWrappingCalculator {
         var perimeter_1 = 2 * l + 2 * w;
         var perimeter_2 = 2 * h + 2 * w;
         var perimeter_3 = 2 * h + 2 * l;
-        var min_perimeter = List.of(perimeter_1, perimeter_2, perimeter_3)
-                .stream()
+        var min_perimeter = Stream.of(perimeter_1, perimeter_2, perimeter_3)
                 .min(Comparator.naturalOrder())
                 .get();
         return min_perimeter + l * w * h;
