@@ -113,6 +113,12 @@ public class AppTest {
     }
 
     @Test
+    void day4_try_with_concurrency() {
+        var hashProducer = new HashProducer("000000");
+        assertEquals("1038736", hashProducer.produceConcurrentHash("bgvyzdsv"));
+    }
+
+    @Test
     void day5() {
         var stringVerifier = new StringVerifier(List.of(CONTAINS_3_VOWELS, CONTAINS_SUCCESSIVE_DOUBLE, DOES_NOT_CONTAIN_FORBIDDEN));
         assertEquals(238, stringVerifier.numberOfNiceStrings(dayFiveInput));
