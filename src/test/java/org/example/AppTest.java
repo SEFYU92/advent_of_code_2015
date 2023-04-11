@@ -6,6 +6,7 @@ import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
 import org.example.day6.LightManager;
+import org.example.day7.SignalResolving;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -33,6 +34,7 @@ public class AppTest {
     private String dayThreeInput;
     private List<String> dayFiveInput;
     private List<String> daySixInput;
+    private List<String> daySevenInput;
 
     @BeforeAll
     void init() throws IOException {
@@ -41,6 +43,7 @@ public class AppTest {
         dayThreeInput = Files.readString(Paths.get("./src/test/resources/day3_input"));
         dayFiveInput = Files.readAllLines(Paths.get("./src/test/resources/day5_input"));
         daySixInput = Files.readAllLines(Paths.get("./src/test/resources/day6_input"));
+        daySevenInput = Files.readAllLines(Paths.get("./src/test/resources/day7_input"));
     }
 
     @Test
@@ -155,5 +158,22 @@ public class AppTest {
     void day6_part2() {
         var lightManager = new LightManager();
         assertEquals(17836115, lightManager.resolveBrightnessProgram(daySixInput));
+    }
+
+    @Test
+    void day7() {
+        var input = List.of(
+                "123 -> x",
+                "456 -> y",
+                "x AND y -> d",
+                "x OR y -> e",
+                "x LSHIFT 2 -> f",
+                "y RSHIFT 2 -> g",
+                "NOT x -> h",
+                "NOT y -> i"
+        );
+        var result = SignalResolving.resolveSignal(input);
+        System.out.println(result);
+        assertEquals(8,result.size());
     }
 }
