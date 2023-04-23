@@ -11,16 +11,17 @@ public class SignalResolving {
     public static Integer resolve(List<String> input, String signal, Map<String, Integer> signals) {
         var line = input.stream().map(x -> x.split(" -> ")).filter(x -> x[1].equals(signal)).findFirst().orElseThrow();
         var operation = line[0].split(" ");
+        int operationLength = operation.length;
 
-        if (operation.length == 1) {
+        if (operationLength == 1) {
             return resolveValue(operation[0], input, signals);
         }
 
-        if (operation.length == 2) {
+        if (operationLength == 2) {
             return  ~resolveValue(operation[1],input, signals) & 0xffff;
         }
 
-        if (operation.length == 3) {
+        if (operationLength == 3) {
             if (operation[1].equals("AND")) {
                 var value1 = resolveValue(operation[0], input, signals);
                 var value2 = resolveValue(operation[2], input, signals);
