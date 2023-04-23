@@ -6,7 +6,6 @@ import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
 import org.example.day6.LightManager;
-import org.example.day7.SignalResolving;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -16,11 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static org.example.day5.StringVerifier.CONTAINS_3_VOWELS;
-import static org.example.day5.StringVerifier.CONTAINS_PAIR_OF_2;
-import static org.example.day5.StringVerifier.CONTAINS_SPACED_DOUBLE;
-import static org.example.day5.StringVerifier.CONTAINS_SUCCESSIVE_DOUBLE;
-import static org.example.day5.StringVerifier.DOES_NOT_CONTAIN_FORBIDDEN;
+import static org.example.day5.StringVerifier.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,12 +23,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Unit test for simple App.
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class AppTest {
+class AppTest {
     private String dayOneInput;
     private List<String> dayTwoInput;
     private String dayThreeInput;
     private List<String> dayFiveInput;
     private List<String> daySixInput;
+    @SuppressWarnings({"unused", "FieldCanBeLocal"})
     private List<String> daySevenInput;
 
     @BeforeAll
@@ -48,7 +44,7 @@ public class AppTest {
 
     @Test
     void day_1() {
-        assertEquals(ParenthesisElevator.resolveFloor(dayOneInput), 74);
+        assertEquals(74, ParenthesisElevator.resolveFloor(dayOneInput));
     }
 
     @Test
@@ -158,22 +154,5 @@ public class AppTest {
     void day6_part2() {
         var lightManager = new LightManager();
         assertEquals(17836115, lightManager.resolveBrightnessProgram(daySixInput));
-    }
-
-    @Test
-    void day7() {
-        var input = List.of(
-                "123 -> x",
-                "456 -> y",
-                "x AND y -> d",
-                "x OR y -> e",
-                "x LSHIFT 2 -> f",
-                "y RSHIFT 2 -> g",
-                "NOT x -> h",
-                "NOT y -> i"
-        );
-        var result = SignalResolving.resolveSignal(input);
-        System.out.println(result);
-        assertEquals(8,result.size());
     }
 }
