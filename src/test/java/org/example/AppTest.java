@@ -6,6 +6,7 @@ import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
 import org.example.day6.LightManager;
+import org.example.day7.SignalResolving;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.TestInstance;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.example.day5.StringVerifier.*;
@@ -154,5 +156,10 @@ class AppTest {
     void day6_part2() {
         var lightManager = new LightManager();
         assertEquals(17836115, lightManager.resolveBrightnessProgram(daySixInput));
+    }
+
+    @Test
+    void day7() {
+        assertEquals(16076, SignalResolving.resolve(daySevenInput, "a", new HashMap<>()));
     }
 }
