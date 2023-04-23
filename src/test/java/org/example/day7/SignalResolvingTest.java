@@ -17,7 +17,7 @@ class SignalResolvingTest {
         );
         var result = SignalResolving.resolve(input, "z", new HashMap<>());
 
-        assertEquals(123,result);
+        assertEquals(123, result);
     }
 
     @Test
@@ -29,6 +29,66 @@ class SignalResolvingTest {
         );
         var result = SignalResolving.resolve(input, "z", new HashMap<>());
 
-        assertEquals(65412,result);
+        assertEquals(65412, result);
+    }
+
+    @Test
+    void should_recursively_resolve_AND_operator() {
+        var input = List.of(
+                "123 -> x",
+                "456 -> y",
+                "x AND y -> d"
+        );
+        var result = SignalResolving.resolve(input, "d", new HashMap<>());
+
+        assertEquals(72, result);
+    }
+
+    @Test
+    void should_recursively_resolve_OR_operator() {
+        var input = List.of(
+                "123 -> x",
+                "456 -> y",
+                "x OR y -> d"
+        );
+        var result = SignalResolving.resolve(input, "d", new HashMap<>());
+
+        assertEquals(507, result);
+    }
+
+    @Test
+    void should_recursively_resolve_RSHIFT_operator() {
+        var input = List.of(
+                "123 -> x",
+                "456 -> y",
+                "x AND y -> d",
+                "x OR y -> e",
+                "x LSHIFT 2 -> f",
+                "y RSHIFT 2 -> g",
+                "NOT x -> h",
+                "NOT y -> i"
+        );
+
+        var result = SignalResolving.resolve(input, "g", new HashMap<>());
+
+        assertEquals(114, result);
+    }
+
+    @Test
+    void should_recursively_resolve_LSHIFT_operator() {
+        var input = List.of(
+                "123 -> x",
+                "456 -> y",
+                "x AND y -> d",
+                "x OR y -> e",
+                "x LSHIFT 2 -> f",
+                "y RSHIFT 2 -> g",
+                "NOT x -> h",
+                "NOT y -> i"
+        );
+
+        var result = SignalResolving.resolve(input, "f", new HashMap<>());
+
+        assertEquals(492, result);
     }
 }
