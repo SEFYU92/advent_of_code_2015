@@ -15,7 +15,7 @@ class SignalResolvingTest {
                 "x -> y",
                 "y -> z"
         );
-        var result = SignalResolving.resolve(input, "z", new HashMap<>());
+        var result = new SignalResolving().resolve(input, "z", new HashMap<>());
 
         assertEquals(123, result);
     }
@@ -27,7 +27,7 @@ class SignalResolvingTest {
                 "x -> y",
                 "NOT y -> z"
         );
-        var result = SignalResolving.resolve(input, "z", new HashMap<>());
+        var result = new SignalResolving().resolve(input, "z", new HashMap<>());
 
         assertEquals(65412, result);
     }
@@ -39,7 +39,7 @@ class SignalResolvingTest {
                 "456 -> y",
                 "x AND y -> d"
         );
-        var result = SignalResolving.resolve(input, "d", new HashMap<>());
+        var result = new SignalResolving().resolve(input, "d", new HashMap<>());
 
         assertEquals(72, result);
     }
@@ -51,7 +51,7 @@ class SignalResolvingTest {
                 "456 -> y",
                 "x OR y -> d"
         );
-        var result = SignalResolving.resolve(input, "d", new HashMap<>());
+        var result = new SignalResolving().resolve(input, "d", new HashMap<>());
 
         assertEquals(507, result);
     }
@@ -69,7 +69,7 @@ class SignalResolvingTest {
                 "NOT y -> i"
         );
 
-        var result = SignalResolving.resolve(input, "g", new HashMap<>());
+        var result = new SignalResolving().resolve(input, "g", new HashMap<>());
 
         assertEquals(114, result);
     }
@@ -87,7 +87,7 @@ class SignalResolvingTest {
                 "NOT y -> i"
         );
 
-        var result = SignalResolving.resolve(input, "f", new HashMap<>());
+        var result = new SignalResolving().resolve(input, "f", new HashMap<>());
 
         assertEquals(492, result);
     }

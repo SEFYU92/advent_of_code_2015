@@ -6,6 +6,7 @@ import org.example.day3.SantaNavigationSystem;
 import org.example.day4.HashProducer;
 import org.example.day5.StringVerifier;
 import org.example.day6.LightManager;
+import org.example.day7.AlterSignalResolving;
 import org.example.day7.SignalResolving;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -160,6 +161,12 @@ class AppTest {
 
     @Test
     void day7() {
-        assertEquals(16076, SignalResolving.resolve(daySevenInput, "a", new HashMap<>()));
+        assertEquals(16076, new SignalResolving().resolve(daySevenInput, "a", new HashMap<>()));
+    }
+
+    @Test
+    void day7_part2() {
+        var sut = new AlterSignalResolving("b", 16076);
+        assertEquals(2797, sut.resolve(daySevenInput, "a", new HashMap<>()));
     }
 }

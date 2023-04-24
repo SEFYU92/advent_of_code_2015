@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 public class SignalResolving {
-    private SignalResolving() {
+    public SignalResolving() {
         //private constructor to hide default
     }
 
-    public static Integer resolve(List<String> input, String signal, Map<String, Integer> signals) {
+    public Integer resolve(List<String> input, String signal, Map<String, Integer> signals) {
         var line = input.stream().map(x -> x.split(" -> ")).filter(x -> x[1].equals(signal)).findFirst().orElseThrow();
         var operation = line[0].split(" ");
         int operationLength = operation.length;
@@ -44,7 +44,7 @@ public class SignalResolving {
         return 0;
     }
 
-    private static int resolveValue(String value, List<String> input, Map<String, Integer> signals) {
+    protected int resolveValue(String value, List<String> input, Map<String, Integer> signals) {
         Integer intValue;
         try {
             return Integer.parseInt(value);
